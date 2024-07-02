@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados da Pesquisa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #000; /* Preto puro para o fundo */
+            color: #fff; /* Branco para o texto */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            padding: 50px;
+            border-radius: 10px; 
+            background-color: #111; /* Cinza muito escuro para o container */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5); 
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff; 
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2); /* Sombra branca sutil */
+        }
+
+        .form-control {
+            background-color: #333; 
+            color: #fff; 
+            border: 1px solid #555; 
+        }
+
+        .form-control:focus {
+            background-color: #444;
+            color: #fff; 
+            border-color: #777;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); 
+        }
+
+        .btn-primary {
+            background-color: #04aa6d; 
+            border-color: #04aa6d;
+        }
+
+        .btn-primary:hover {
+            background-color: #02754b; 
+            border-color: #02754b; 
+        }
+
+        /* Estilo adicional para links */
+        a {
+            color: #04aa6d; /* Cor verde para links */
+        }
+
+        a:hover {
+            color: #02754b; /* Cor verde mais escura ao passar o mouse */
+        }
+
+        /* Estilo para o card */
+        .card {
+            background-color: #222; /* Cinza escuro para o card */
+            border-color: #333;
+        }
+
+        .card-title {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Resultados da Pesquisa</h1>
+        <div class="row">
+            {% for video in results %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ video.thumbnail_url }}" class="card-img-top" alt="{{ video.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ video.title }}</h5>
+                        <audio controls>
+                            <source src="{{ video.audio_url }}" type="audio/mp4">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <a href="/download/{{ video.video_id }}" class="btn btn-primary mt-2">Baixar</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/" class="btn btn-secondary">Voltar</a>
+    </div>
+</body>
+</html>
